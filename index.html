@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hopebloom — Growing a safer internet</title>
+  <meta
+    name="description"
+    content="Hopebloom is preparing a child-protection initiative focused on creating safer online spaces for children."
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #fbfbfd;
+      --text: #101014;
+      --muted: #6e6e73;
+      --soft: #f1f1f3;
+      --card: #ffffff;
+      --line: rgba(0,0,0,.08);
+      --accent: #2674ff;
+      --accent-2: #65c9a5;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      background: rgba(251,251,253,.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      font-size: 18px;
+    }
+
+    .brand-mark {
+      width: 25px;
+      height: 25px;
+      border-radius: 50% 50% 50% 12%;
+      background: linear-gradient(135deg, #66d5aa, #2674ff);
+      transform: rotate(-8deg);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 13px;
+      border-radius: 100% 0;
+      background: white;
+      left: 8px;
+      top: 5px;
+      opacity: .9;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      color: #454549;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      transition: opacity .2s;
+    }
+
+    .nav-links a:hover {
+      opacity: .55;
+    }
+
+    .nav-button {
+      background: var(--text);
+      color: white;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .nav-button:hover {
+      transform: scale(1.04);
+      opacity: .9;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 150px 20px 100px;
+      position: relative;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(38,116,255,.11),
+          rgba(101,201,165,.07) 40%,
+          transparent 70%
+        );
+      filter: blur(25px);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      box-shadow: 0 5px 25px rgba(0,0,0,.03);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #65c9a5;
+      box-shadow: 0 0 0 4px rgba(101,201,165,.12);
+    }
+
+    h1 {
+      font-size: clamp(55px, 9vw, 112px);
+      line-height: .94;
+      letter-spacing: -.075em;
+      font-weight: 700;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #2674ff, #55b99c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      max-width: 650px;
+      margin: 35px auto 0;
+      font-size: clamp(17px, 2vw, 21px);
+      color: var(--muted);
+      letter-spacing: -.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 38px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 13px 21px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .button-primary {
+      background: var(--text);
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    .button-secondary {
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 120px 20px;
+    }
+
+    .container {
+      width: min(var(--max), 100%);
+      margin: auto;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: 1;
+      letter-spacing: -.055em;
+      max-width: 720px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 650px;
+      margin-top: 24px;
+    }
+
+    /* MISSION */
+
+    .mission {
+      background: #fff;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .mission-visual {
+      height: 500px;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(101,201,165,.8), transparent 35%),
+        radial-gradient(circle at 75% 65%, rgba(38,116,255,.75), transparent 40%),
+        linear-gradient(135deg, #edf5ff, #effbf7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      backdrop-filter: blur(10px);
+    }
+
+    .orb-one {
+      width: 210px;
+      height: 210px;
+      background: rgba(255,255,255,.45);
+      top: 80px;
+      left: 90px;
+    }
+
+    .orb-two {
+      width: 280px;
+      height: 280px;
+      background: rgba(255,255,255,.2);
+      bottom: -50px;
+      right: -40px;
+    }
+
+    .visual-message {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 50px;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -.05em;
+      color: #10233b;
+    }
+
+    /* FOCUS */
+
+    .focus {
+      background: var(--bg);
+    }
+
+    .focus-grid {
+      margin-top: 65px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .focus-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 35px;
+      min-height: 280px;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .focus-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.07);
+    }
+
+    .focus-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--soft);
+      margin-bottom: 60px;
+      font-size: 20px;
+    }
+
+    .focus-card h3 {
+      font-size: 21px;
+      letter-spacing: -.035em;
+      margin-bottom: 10px;
+    }
+
+    .focus-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PHILOSOPHY */
+
+    .philosophy {
+      background: #111113;
+      color: white;
+      text-align: center;
+    }
+
+    .philosophy .section-label {
+      color: #70d5b1;
+    }
+
+    .philosophy h2 {
+      font-size: clamp(42px, 6vw, 75px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .philosophy p {
+      max-width: 620px;
+      color: #a1a1a6;
+      margin: 28px auto 0;
+      font-size: 17px;
+    }
+
+    /* PREPARING */
+
+    .preparing {
+      background: #fff;
+    }
+
+    .preparing-box {
+      border-radius: 38px;
+      padding: 70px;
+      background: linear-gradient(135deg, #eef5ff, #f0fbf7);
+      text-align: center;
+    }
+
+    .preparing-box h2 {
+      font-size: clamp(38px, 5vw, 60px);
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+
+    .preparing-box p {
+      max-width: 600px;
+      color: var(--muted);
+      margin: 25px auto;
+    }
+
+    .progress {
+      max-width: 500px;
+      margin: 35px auto 0;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 35%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #2674ff, #65c9a5);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 70px 20px 35px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-top {
+      width: min(var(--max), 100%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+      max-width: 320px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 60px;
+    }
+
+    .footer-column h4 {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .footer-column a {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 9px;
+    }
+
+    .footer-bottom {
+      width: min(var(--max), 100%);
+      margin: 60px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: #8a8a8f;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .mission-visual {
+        height: 350px;
+      }
+
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .preparing-box {
+        padding: 45px 25px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    /* SCROLL REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#" class="brand">
+        <span class="brand-mark"></span>
+        Hopebloom
+      </a>
+
+      <div class="nav-links">
+        <a href="#mission">Our mission</a>
+        <a href="#focus">Focus</a>
+        <a href="#about">About</a>
+      </div>
+
+      <a href="#updates" class="nav-button">
+        Updates
+      </a>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="reveal">
+
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          An initiative in preparation
+        </div>
+
+        <h1>
+          Growing a
+          <span class="gradient-text">safer internet.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Hopebloom is being built around one simple idea:
+          children deserve online spaces where they can explore,
+          learn and grow without being exposed to harmful content.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#mission" class="button button-primary">
+            Discover Hopebloom
+          </a>
+
+          <a href="#updates" class="button button-secondary">
+            What we're building
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MISSION -->
+
+    <section class="mission" id="mission">
+
+      <div class="container mission-grid">
+
+        <div class="reveal">
+
+          <div class="section-label">
+            Our mission
+          </div>
+
+          <h2 class="section-title">
+            Childhood should have room to bloom.
+          </h2>
+
+          <p class="section-description">
+            The internet can be an incredible place for discovery.
+            It can also expose young people to material they were
+            never meant to encounter.
+          </p>
+
+          <p class="section-description">
+            Hopebloom is being prepared as an online child-protection
+            initiative focused on awareness, prevention, safer digital
+            environments and practical resources.
+          </p>
+
+        </div>
+
+        <div class="mission-visual reveal">
+
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+
+          <div class="visual-message">
+            Protect curiosity.<br />
+            Preserve childhood.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOCUS -->
+
+    <section class="focus" id="focus">
+
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="section-label">
+            What we care about
+          </div>
+
+          <h2 class="section-title">
+            Protection starts before harm happens.
+          </h2>
+
+          <p class="section-description">
+            Our planned work focuses on reducing children's exposure
+            to some of the most harmful areas of the internet.
+          </p>
+
+        </div>
+
+
+        <div class="focus-grid">
+
+          <article class="focus-card reveal">
+            <div class="focus-icon">◌</div>
+
+            <h3>Graphic content</h3>
+
+            <p>
+              Helping young people avoid exposure to disturbing,
+              violent and graphic material online.
+            </p>
+          </article>
+
+
+          <article class="focus-card reveal">
+            <div class="focus-icon">◈</div>
+
+            <h3>Sexual content</h3>
+
+            <p>
+              Supporting safer digital environments where children
+              are protected from inappropriate sexual material.
+            </p>
+          </article>
+
+
+          <article class="focus-card reveal">
+            <div class="focus-icon">+</div>
+
+            <h3>Self-harm content</h3>
+
+            <p>
+              Working toward healthier online spaces that do not
+              normalize or encourage harmful behavior.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PHILOSOPHY -->
+
+    <section class="philosophy" id="about">
+
+      <div class="container reveal">
+
+        <div class="section-label">
+          Our philosophy
+        </div>
+
+        <h2>
+          Technology should protect childhood,
+          not take it away.
+        </h2>
+
+        <p>
+          Hopebloom is being developed with prevention, education,
+          responsible technology and child-centered thinking at its core.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- PREPARING -->
+
+    <section class="preparing" id="updates">
+
+      <div class="container">
+
+        <div class="preparing-box reveal">
+
+          <div class="section-label">
+            Currently preparing
+          </div>
+
+          <h2>
+            We're just getting started.
+          </h2>
+
+          <p>
+            Hopebloom is currently in its preparation stage.
+            Our website, resources, policies and future initiatives
+            are still being developed.
+          </p>
+
+          <div class="progress">
+            <div class="progress-bar"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+
+        <a href="#" class="brand">
+          <span class="brand-mark"></span>
+          Hopebloom
+        </a>
+
+        <p>
+          Building toward a safer, healthier internet
+          for children.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <div class="footer-column">
+
+          <h4>Explore</h4>
+
+          <a href="#mission">Mission</a>
+          <a href="#focus">Focus</a>
+          <a href="#about">Philosophy</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h4>Hopebloom</h4>
+
+          <a href="#updates">Our preparation</a>
+          <a href="#">Contact</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Hopebloom
+      </span>
+
+      <span>
+        An initiative in preparation
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el => observer.observe(el));
+
+  </script>
+
+</body>
+</html>
